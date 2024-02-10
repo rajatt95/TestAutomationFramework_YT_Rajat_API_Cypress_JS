@@ -1,12 +1,10 @@
 describe('Users', () => {
 
-    const baseUrl = 'https://reqres.in/api/'
-
     it('GET Request - Get User Details.', () => {
         cy.request({
             // Make a request to the API endpoint
             method: 'GET',
-            url: `${baseUrl}users/2`,    
+            url: `users/2`,    
             
         }).then((response) => {
 
@@ -26,7 +24,7 @@ describe('Users', () => {
         cy.request({
             // Make a request to the API endpoint
             method: 'POST',
-            url: `${baseUrl}user`,  
+            url: `user`,  
             body: {    
                 id: 1111,
             },  
@@ -47,7 +45,7 @@ describe('Users', () => {
         cy.request({
             // Make a request to the API endpoint
             method: 'PUT',
-            url: `${baseUrl}users/2`,  
+            url: `users/2`,  
             body: {    
                 name: 'test name - updated',
                 job: 'test job - updated',
@@ -71,7 +69,7 @@ describe('Users', () => {
         cy.request({
             // Make a request to the API endpoint
             method: 'DELETE',
-            url: `${baseUrl}users/2`,    
+            url: `users/2`,    
             
         }).then((response) => {
 
