@@ -8,8 +8,11 @@
     "cy:tests": "cypress run --spec cypress/e2e/tests-reqres/*.cy.js",
 
     "tests:Tag:SANITY": "cypress run --spec cypress/e2e/tests-reqres/*.cy.js --env grep=@sanity",
-    "tests:Tag:REGRESSION": "cypress run --spec cypress/e2e/tests-reqres/*.cy.js --env grep=@regression"
+    "tests:Tag:REGRESSION": "cypress run --spec cypress/e2e/tests-reqres/*.cy.js --env grep=@regression",
 
+    "tests:DEV": "BASE_URL=https://www.dev-reqres.in/api/ cypress run --spec cypress/e2e/tests-reqres/*.cy.js",
+    "tests:PRE-PROD": "BASE_URL=https://www.pre-prod-reqres.in/api/ cypress run --spec cypress/e2e/tests-reqres/*.cy.js",
+    "tests:PROD": "BASE_URL=https://reqres.in/api/ cypress run --spec cypress/e2e/tests-reqres/*.cy.js"
 
   },
   "keywords": [],
