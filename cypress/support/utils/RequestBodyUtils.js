@@ -6,7 +6,7 @@ import requestBodyLoginUnsuccessful from '../../fixtures/login/login-unsuccessfu
 
 import requestBodyUserCreate from '../../fixtures/users/user_create.json';
 import requestBodyUserUpdatePut from '../../fixtures/users/user_update_put.json';
-
+import requestBodyUserUpdatePatch from '../../fixtures/users/user_update_patch.json';
 /**
  * Utility class for managing and providing request body data for various scenarios.
  */
@@ -23,6 +23,8 @@ class RequestBodyUtils {
     // Users
     USER_CREATE = requestBodyUserCreate;
     USER_UPDATE_PUT = requestBodyUserUpdatePut;    
+    USER_UPDATE_PATCH = requestBodyUserUpdatePatch;
+    
 
 }
 

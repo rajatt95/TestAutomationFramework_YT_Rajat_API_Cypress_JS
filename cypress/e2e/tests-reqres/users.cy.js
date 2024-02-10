@@ -12,6 +12,8 @@ describe('Users', () => {
     // Define endpoints for users
     const singleUserEndpoint = EndpointUtils.SINGLE_USER;
     const userEndpoint = EndpointUtils.USER;
+    const singleUserNotFoundEndpoint = EndpointUtils.SINGLE_USER_NOT_FOUND;
+    const listUsersEndpoint = EndpointUtils.LIST_USERS;
 
     /**
      * Test case for making a GET request to retrieve user details.
@@ -86,5 +88,69 @@ describe('Users', () => {
             VerificationUtils.assertResponseStatusCode(response, 204)
         });
     });
+
+    /**
+     * Test case for making a GET request when a single user is not found.
+     * @tags {regression}
+     */
+    it('GET Request - SINGLE USER NOT FOUND. @regression', () => {
+        
+        RequestUtils.get(singleUserNotFoundEndpoint).then((response) => {
+
+            // Assertions to validate the response
+            VerificationUtils.assertResponseStatusCode(response, 404)
+        
+        });
+    });
+
+
+    /**
+     * Test case for making a GET request to list users.
+     * @tags {regression}
+     */
+    it('GET Request - LIST USERS. @regression', () => {
+        
+        RequestUtils.get(listUsersEndpoint).then((response) => {
+
+            // Parse and Log Response Body    
+            const responseBody = ResponseUtils.parseAndLogResponseBody(response);
+        
+            // Assertions to validate the response
+            VerificationUtils.assertResponseStatusCode(response, 200) 
+            VerificationUtils.assertResponseBodyKeyValue(responseBody, 'page', 2);
+
+            // Data Array > 1st Object must have all below properties
+            VerificationUtils.assertResponseBodyKeyPresent(responseBody.data[0], 'id');
+            VerificationUtils.assertResponseBodyKeyPresent(responseBody.data[0], 'email');
+            VerificationUtils.assertResponseBodyKeyPresent(responseBody.data[0], 'first_name');
+            VerificationUtils.assertResponseBodyKeyPresent(responseBody.data[0], 'last_name');
+            VerificationUtils.assertResponseBodyKeyPresent(responseBody.data[0], 'avatar');
+            
+            VerificationUtils.assertResponseBodyKeyValue(responseBody.support, 'text', 'To keep ReqRes free, contributions towards server costs are appreciated!');
+            
+        });
+    });
+
+    /**
+     * Test case for making a PATCH request to update a user.
+     * @tags {regression, sanity}
+     */
+    it('PATCH Request - Update User. @regression @sanity', () => {
+    
+        RequestUtils.patch(singleUserEndpoint, RequestBodyUtils.USER_UPDATE_PATCH).then((response) => {
+
+            // Parse and Log Response Body    
+            const responseBody = ResponseUtils.parseAndLogResponseBody(response);
+
+            // Assertions to validate the response
+            VerificationUtils.assertResponseStatusCode(response, 200);
+            VerificationUtils.assertResponseBodyKeyValue(responseBody, 'name', 'test name - updated using patch');
+            VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'updatedAt');
+
+        });
+    });
+
+
+
 
 })
