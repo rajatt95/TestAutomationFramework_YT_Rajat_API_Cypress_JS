@@ -2,6 +2,7 @@ import EndpointUtils from '../../support/utils/EndpointUtils';
 import RequestBodyUtils from '../../support/utils/RequestBodyUtils';
 import RequestUtils from '../../support/utils/RequestUtils';
 import ResponseUtils from '../../support/utils/ResponseUtils';
+import VerificationUtils from '../../support/utils/VerificationUtils';
 
 describe('Users', () => {
 
@@ -18,10 +19,10 @@ describe('Users', () => {
             const responseBody = ResponseUtils.parseAndLogResponseBody(response);
 
             // Assertions to validate the response
-            expect(response.status).to.equal(200);        
-            expect(response.body.data.first_name).to.equal('Janet');
-            expect(response.body.data.last_name).to.equal('Weaver');
-            expect(response.body.data).to.have.property('email');
+            VerificationUtils.assertResponseStatusCode(response, 200)
+            VerificationUtils.assertResponseBodyKeyValue(responseBody.data, 'first_name', 'Janet')
+            VerificationUtils.assertResponseBodyKeyValue(responseBody.data, 'last_name', 'Weaver')
+            VerificationUtils.assertResponseBodyKeyPresent(responseBody.data, 'email')
         });
     });
 
@@ -34,9 +35,9 @@ describe('Users', () => {
             const responseBody = ResponseUtils.parseAndLogResponseBody(response);
 
             // Assertions to validate the response
-            expect(response.status).to.equal(201);        
-            expect(response.body.id).to.equal(1111);
-            expect(response.body).to.have.property('createdAt');
+            VerificationUtils.assertResponseStatusCode(response, 201)
+            VerificationUtils.assertResponseBodyKeyValue(responseBody, 'id', 1111)
+            VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'createdAt')
         });
     });
 
@@ -49,10 +50,10 @@ describe('Users', () => {
             const responseBody = ResponseUtils.parseAndLogResponseBody(response);
 
             // Assertions to validate the response
-            expect(response.status).to.equal(200);        
-            expect(response.body.name).to.equal('test name - updated');
-            expect(response.body.job).to.equal('test job - updated');
-            expect(response.body).to.have.property('updatedAt');
+            VerificationUtils.assertResponseStatusCode(response, 200)   
+            VerificationUtils.assertResponseBodyKeyValue(responseBody, 'name', 'test name - updated')
+            VerificationUtils.assertResponseBodyKeyValue(responseBody, 'job', 'test job - updated')
+            VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'updatedAt');
         
         });
     });
@@ -66,7 +67,7 @@ describe('Users', () => {
             const responseBody = ResponseUtils.parseAndLogResponseBody(response);
 
             // Assertions to validate the response
-            expect(response.status).to.equal(204); 
+            VerificationUtils.assertResponseStatusCode(response, 204)
         });
     });
 
