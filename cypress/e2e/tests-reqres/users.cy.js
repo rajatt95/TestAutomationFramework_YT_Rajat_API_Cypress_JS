@@ -1,5 +1,6 @@
 import EndpointUtils from '../../support/utils/EndpointUtils';
 import RequestBodyUtils from '../../support/utils/RequestBodyUtils';
+import RequestUtils from '../../support/utils/RequestUtils';
 
 describe('Users', () => {
 
@@ -8,12 +9,7 @@ describe('Users', () => {
     const userEndpoint = EndpointUtils.USER;
 
     it('GET Request - Get User Details. @regression', () => {
-        cy.request({
-            // Make a request to the API endpoint
-            method: 'GET',
-            url: singleUserEndpoint,    
-            
-        }).then((response) => {
+        RequestUtils.get(singleUserEndpoint).then((response) => {  
 
             // Parse and Log Response Body    
             console.log(response.body)
@@ -28,13 +24,7 @@ describe('Users', () => {
     });
 
     it('POST Request - Create New User. @regression @sanity', () => {
-        cy.request({
-            // Make a request to the API endpoint
-            method: 'POST',
-            url: userEndpoint,  
-            body: RequestBodyUtils.USER_CREATE,
-
-        }).then((response) => {
+        RequestUtils.post(userEndpoint, RequestBodyUtils.USER_CREATE).then((response) => {
 
             // Parse and Log Response Body    
             console.log(response.body)
@@ -48,14 +38,8 @@ describe('Users', () => {
     });
 
     it('PUT Request - Update User. @regression @sanity', () => {
-        cy.request({
-            // Make a request to the API endpoint
-            method: 'PUT',
-            url: singleUserEndpoint,  
-            body: RequestBodyUtils.USER_UPDATE_PUT,
-
-        }).then((response) => {
-
+        RequestUtils.put(singleUserEndpoint, RequestBodyUtils.USER_UPDATE_PUT).then((response) => {
+            
             // Parse and Log Response Body    
             console.log(response.body)
             cy.log(response.body)
@@ -70,13 +54,8 @@ describe('Users', () => {
     });
 
     it('DELETE Request - Delete User. @regression', () => {
-        cy.request({
-            // Make a request to the API endpoint
-            method: 'DELETE',
-            url: singleUserEndpoint,    
+        RequestUtils.delete(singleUserEndpoint).then((response) => {
             
-        }).then((response) => {
-
             // Parse and Log Response Body    
             console.log(response.body)
             cy.log(response.body)
