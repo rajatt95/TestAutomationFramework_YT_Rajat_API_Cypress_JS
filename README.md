@@ -90,10 +90,19 @@ The tests follow a modular and maintainable structure:
 |-- cypress
 |     |-- e2e
 |          |-- tests-reqres
+|                |-- login.cy.js
+|                |-- register.cy.js
 |                |-- users.cy.js
 |     |-- fixtures
+|           |-- login
+|                |-- login-successful.json.json
+|                |-- login-unsuccessful.json.json
+|           |-- register
+|                |-- register-successful.json.json
+|                |-- register-unsuccessful.json.json
 |           |-- users
 |                |-- user_create.json
+|                |-- user_update_patch.json
 |                |-- user_update_put.json
 |     |-- reports
 |     |-- support
