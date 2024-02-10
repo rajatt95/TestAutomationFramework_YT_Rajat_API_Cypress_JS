@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "This project is a Test Automation Framework built using Cypress and Javascript for automated testing of REST APIs.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:tests": "cypress run --spec cypress/e2e/tests-reqres/*.cy.js"
+  },
   "keywords": [],
   "author": "Rajat Verma",
   "license": "ISC",
