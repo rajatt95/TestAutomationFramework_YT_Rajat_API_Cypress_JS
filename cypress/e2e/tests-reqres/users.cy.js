@@ -1,10 +1,16 @@
+import EndpointUtils from '../../support/utils/EndpointUtils';
+
 describe('Users', () => {
+
+    // Define endpoints for users
+    const singleUserEndpoint = EndpointUtils.SINGLE_USER;
+    const userEndpoint = EndpointUtils.USER;
 
     it('GET Request - Get User Details. @regression', () => {
         cy.request({
             // Make a request to the API endpoint
             method: 'GET',
-            url: `users/2`,    
+            url: singleUserEndpoint,    
             
         }).then((response) => {
 
@@ -24,7 +30,7 @@ describe('Users', () => {
         cy.request({
             // Make a request to the API endpoint
             method: 'POST',
-            url: `user`,  
+            url: userEndpoint,  
             body: {    
                 id: 1111,
             },  
@@ -45,7 +51,7 @@ describe('Users', () => {
         cy.request({
             // Make a request to the API endpoint
             method: 'PUT',
-            url: `users/2`,  
+            url: singleUserEndpoint,  
             body: {    
                 name: 'test name - updated',
                 job: 'test job - updated',
@@ -69,7 +75,7 @@ describe('Users', () => {
         cy.request({
             // Make a request to the API endpoint
             method: 'DELETE',
-            url: `users/2`,    
+            url: singleUserEndpoint,    
             
         }).then((response) => {
 
