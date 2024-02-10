@@ -1,6 +1,7 @@
 import EndpointUtils from '../../support/utils/EndpointUtils';
 import RequestBodyUtils from '../../support/utils/RequestBodyUtils';
 import RequestUtils from '../../support/utils/RequestUtils';
+import ResponseUtils from '../../support/utils/ResponseUtils';
 
 describe('Users', () => {
 
@@ -9,11 +10,12 @@ describe('Users', () => {
     const userEndpoint = EndpointUtils.USER;
 
     it('GET Request - Get User Details. @regression', () => {
+
+        // Make a request to the API endpoint
         RequestUtils.get(singleUserEndpoint).then((response) => {  
 
             // Parse and Log Response Body    
-            console.log(response.body)
-            cy.log(response.body)
+            const responseBody = ResponseUtils.parseAndLogResponseBody(response);
 
             // Assertions to validate the response
             expect(response.status).to.equal(200);        
@@ -24,11 +26,12 @@ describe('Users', () => {
     });
 
     it('POST Request - Create New User. @regression @sanity', () => {
+
+        // Make a request to the API endpoint
         RequestUtils.post(userEndpoint, RequestBodyUtils.USER_CREATE).then((response) => {
 
             // Parse and Log Response Body    
-            console.log(response.body)
-            cy.log(response.body)
+            const responseBody = ResponseUtils.parseAndLogResponseBody(response);
 
             // Assertions to validate the response
             expect(response.status).to.equal(201);        
@@ -38,11 +41,12 @@ describe('Users', () => {
     });
 
     it('PUT Request - Update User. @regression @sanity', () => {
+
+        // Make a request to the API endpoint
         RequestUtils.put(singleUserEndpoint, RequestBodyUtils.USER_UPDATE_PUT).then((response) => {
             
             // Parse and Log Response Body    
-            console.log(response.body)
-            cy.log(response.body)
+            const responseBody = ResponseUtils.parseAndLogResponseBody(response);
 
             // Assertions to validate the response
             expect(response.status).to.equal(200);        
@@ -54,11 +58,12 @@ describe('Users', () => {
     });
 
     it('DELETE Request - Delete User. @regression', () => {
+        
+        // Make a request to the API endpoint
         RequestUtils.delete(singleUserEndpoint).then((response) => {
             
             // Parse and Log Response Body    
-            console.log(response.body)
-            cy.log(response.body)
+            const responseBody = ResponseUtils.parseAndLogResponseBody(response);
 
             // Assertions to validate the response
             expect(response.status).to.equal(204); 
