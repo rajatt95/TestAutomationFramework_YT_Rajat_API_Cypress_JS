@@ -1,4 +1,5 @@
 import EndpointUtils from '../../support/utils/EndpointUtils';
+import RequestBodyUtils from '../../support/utils/RequestBodyUtils';
 
 describe('Users', () => {
 
@@ -31,9 +32,8 @@ describe('Users', () => {
             // Make a request to the API endpoint
             method: 'POST',
             url: userEndpoint,  
-            body: {    
-                id: 1111,
-            },  
+            body: RequestBodyUtils.USER_CREATE,
+
         }).then((response) => {
 
             // Parse and Log Response Body    
@@ -52,10 +52,8 @@ describe('Users', () => {
             // Make a request to the API endpoint
             method: 'PUT',
             url: singleUserEndpoint,  
-            body: {    
-                name: 'test name - updated',
-                job: 'test job - updated',
-            },  
+            body: RequestBodyUtils.USER_UPDATE_PUT,
+
         }).then((response) => {
 
             // Parse and Log Response Body    
