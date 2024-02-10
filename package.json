@@ -5,12 +5,18 @@
   "main": "index.js",
   "scripts": {
     "cy:open": "cypress open",
-    "cy:tests": "cypress run --spec cypress/e2e/tests-reqres/*.cy.js"
+    "cy:tests": "cypress run --spec cypress/e2e/tests-reqres/*.cy.js",
+
+    "tests:Tag:SANITY": "cypress run --spec cypress/e2e/tests-reqres/*.cy.js --env grep=@sanity",
+    "tests:Tag:REGRESSION": "cypress run --spec cypress/e2e/tests-reqres/*.cy.js --env grep=@regression"
+
+
   },
   "keywords": [],
   "author": "Rajat Verma",
   "license": "ISC",
   "dependencies": {
+    "@cypress/grep": "^4.0.1",
     "cypress": "^13.6.4",
     "cypress-mochawesome-reporter": "^3.8.1"
   }

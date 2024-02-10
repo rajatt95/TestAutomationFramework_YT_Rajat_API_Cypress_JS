@@ -1,6 +1,6 @@
 describe('Users', () => {
 
-    it('GET Request - Get User Details.', () => {
+    it('GET Request - Get User Details. @regression', () => {
         cy.request({
             // Make a request to the API endpoint
             method: 'GET',
@@ -20,7 +20,7 @@ describe('Users', () => {
         });
     });
 
-    it('POST Request - Create New User.', () => {
+    it('POST Request - Create New User. @regression @sanity', () => {
         cy.request({
             // Make a request to the API endpoint
             method: 'POST',
@@ -41,7 +41,7 @@ describe('Users', () => {
         });
     });
 
-    it('PUT Request - Update User.', () => {
+    it('PUT Request - Update User. @regression @sanity', () => {
         cy.request({
             // Make a request to the API endpoint
             method: 'PUT',
@@ -65,7 +65,7 @@ describe('Users', () => {
         });
     });
 
-    it('DELETE Request - Delete User.', () => {
+    it('DELETE Request - Delete User. @regression', () => {
         cy.request({
             // Make a request to the API endpoint
             method: 'DELETE',
