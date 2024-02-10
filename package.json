@@ -11,6 +11,7 @@
   "author": "Rajat Verma",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^13.6.4"
+    "cypress": "^13.6.4",
+    "cypress-mochawesome-reporter": "^3.8.1"
   }
 }
