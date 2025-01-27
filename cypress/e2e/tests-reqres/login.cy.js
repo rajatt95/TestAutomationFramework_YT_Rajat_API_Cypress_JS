@@ -49,6 +49,7 @@ describe('Login', () => {
             // Assertions to validate the response
             VerificationUtils.assertResponseStatusCode(response, 400)
             VerificationUtils.assertResponseBodyKeyValue(responseBody, "error", "Missing password")
+            VerificationUtils.assertResponseSchema(responseBody, SchemaUtils.LOGIN_UNSUCCESSFUL)        
                     
         });
     });

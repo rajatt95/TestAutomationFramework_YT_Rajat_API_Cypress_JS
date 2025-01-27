@@ -3,6 +3,7 @@ import RequestBodyUtils from '../../support/utils/RequestBodyUtils';
 import RequestUtils from '../../support/utils/RequestUtils';
 import ResponseUtils from '../../support/utils/ResponseUtils';
 import VerificationUtils from '../../support/utils/VerificationUtils';
+import SchemaUtils from '../../support/utils/SchemaUtils';
 
 /**
  * Test suite for API endpoints related to user management.
@@ -32,6 +33,7 @@ describe('Users', () => {
             VerificationUtils.assertResponseBodyKeyValue(responseBody.data, 'first_name', 'Janet')
             VerificationUtils.assertResponseBodyKeyValue(responseBody.data, 'last_name', 'Weaver')
             VerificationUtils.assertResponseBodyKeyPresent(responseBody.data, 'email')
+
         });
     });
 
@@ -51,6 +53,8 @@ describe('Users', () => {
             VerificationUtils.assertResponseStatusCode(response, 201)
             VerificationUtils.assertResponseBodyKeyValue(responseBody, 'id', 1111)
             VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'createdAt')
+
+            VerificationUtils.assertResponseSchema(responseBody, SchemaUtils.USER_CREATE)
         });
     });
 
@@ -71,6 +75,8 @@ describe('Users', () => {
             VerificationUtils.assertResponseBodyKeyValue(responseBody, 'name', 'test name - updated')
             VerificationUtils.assertResponseBodyKeyValue(responseBody, 'job', 'test job - updated')
             VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'updatedAt');
+
+            VerificationUtils.assertResponseSchema(responseBody, SchemaUtils.USER_UPDATE_PUT)
         
         });
     });
@@ -86,6 +92,7 @@ describe('Users', () => {
 
             // Assertions to validate the response
             VerificationUtils.assertResponseStatusCode(response, 204)
+
         });
     });
 
@@ -126,8 +133,9 @@ describe('Users', () => {
             VerificationUtils.assertResponseBodyKeyPresent(responseBody.data[0], 'last_name');
             VerificationUtils.assertResponseBodyKeyPresent(responseBody.data[0], 'avatar');
             
-            VerificationUtils.assertResponseBodyKeyValue(responseBody.support, 'text', 'To keep ReqRes free, contributions towards server costs are appreciated!');
-            
+            // VerificationUtils.assertResponseBodyKeyValue(responseBody.support, 'text', 'To keep ReqRes free, contributions towards server costs are appreciated!');
+            VerificationUtils.assertResponseBodyKeyValue(responseBody.support, 'text', 'Tired of writing endless social media content? Let Content Caddy generate it for you.');
+                        
         });
     });
 
@@ -147,10 +155,9 @@ describe('Users', () => {
             VerificationUtils.assertResponseBodyKeyValue(responseBody, 'name', 'test name - updated using patch');
             VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'updatedAt');
 
+            VerificationUtils.assertResponseSchema(responseBody, SchemaUtils.USER_UPDATE_PATCH)
+
         });
     });
-
-
-
 
 })

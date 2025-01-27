@@ -3,6 +3,7 @@ import RequestBodyUtils from '../../support/utils/RequestBodyUtils';
 import RequestUtils from '../../support/utils/RequestUtils';
 import ResponseUtils from '../../support/utils/ResponseUtils';
 import VerificationUtils from '../../support/utils/VerificationUtils';
+import SchemaUtils from '../../support/utils/SchemaUtils';
 
 /**
  * Test suite for API endpoints related to user registration.
@@ -27,7 +28,8 @@ describe('Register', () => {
             // Assertions to validate the response
             VerificationUtils.assertResponseStatusCode(response, 200)
             VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'id')
-            VerificationUtils.assertResponseBodyKeyPresent(responseBody, "token")        
+            VerificationUtils.assertResponseBodyKeyPresent(responseBody, "token")   
+            VerificationUtils.assertResponseSchema(responseBody, SchemaUtils.REGISTER_SUCCESSFUL)     
             
         });
     });
@@ -48,6 +50,7 @@ describe('Register', () => {
             VerificationUtils.assertResponseStatusCode(response, 400)
             VerificationUtils.assertResponseBodyKeyPresent(responseBody, "error")
             VerificationUtils.assertResponseBodyKeyValue(responseBody, "error", "Missing password")
+            VerificationUtils.assertResponseSchema(responseBody, SchemaUtils.REGISTER_UNSUCCESSFUL)
                     
         });
     });
