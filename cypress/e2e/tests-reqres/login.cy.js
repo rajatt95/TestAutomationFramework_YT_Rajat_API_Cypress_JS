@@ -3,6 +3,7 @@ import RequestBodyUtils from '../../support/utils/RequestBodyUtils';
 import RequestUtils from '../../support/utils/RequestUtils';
 import ResponseUtils from '../../support/utils/ResponseUtils';
 import VerificationUtils from '../../support/utils/VerificationUtils';
+import SchemaUtils from '../../support/utils/SchemaUtils';
 
 /**
  * Test suite for API endpoints related to user login.
@@ -27,7 +28,8 @@ describe('Login', () => {
 
             // Assertions to validate the response
             VerificationUtils.assertResponseStatusCode(response, 200)
-            VerificationUtils.assertResponseBodyKeyPresent(responseBody, "token")        
+            VerificationUtils.assertResponseBodyKeyPresent(responseBody, "token") 
+            VerificationUtils.assertResponseSchema(responseBody, SchemaUtils.LOGIN_SUCCESSFUL)        
             
         });
     });

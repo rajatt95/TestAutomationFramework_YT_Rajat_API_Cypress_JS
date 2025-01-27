@@ -1,12 +1,12 @@
-import requestBodyRegisterSuccessful from '../../fixtures/register/register-successful.json';
-import requestBodyRegisterUnsuccessful from '../../fixtures/register/register-unsuccessful.json';
+import requestBodyRegisterSuccessful from '../../fixtures/request-body/register/register-successful.json';
+import requestBodyRegisterUnsuccessful from '../../fixtures/request-body/register/register-unsuccessful.json';
 
-import requestBodyLoginSuccessful from '../../fixtures/login/login-successful.json';
-import requestBodyLoginUnsuccessful from '../../fixtures/login/login-unsuccessful.json';
+import requestBodyLoginSuccessful from '../../fixtures/request-body/login/login-successful.json';
+import requestBodyLoginUnsuccessful from '../../fixtures/request-body/login/login-unsuccessful.json';
 
-import requestBodyUserCreate from '../../fixtures/users/user_create.json';
-import requestBodyUserUpdatePut from '../../fixtures/users/user_update_put.json';
-import requestBodyUserUpdatePatch from '../../fixtures/users/user_update_patch.json';
+import requestBodyUserCreate from '../../fixtures/request-body/users/user_create.json';
+import requestBodyUserUpdatePut from '../../fixtures/request-body/users/user_update_put.json';
+import requestBodyUserUpdatePatch from '../../fixtures/request-body/users/user_update_patch.json';
 /**
  * Utility class for managing and providing request body data for various scenarios.
  */

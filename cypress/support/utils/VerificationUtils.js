@@ -1,3 +1,6 @@
+
+import Ajv from 'ajv';
+
 /**
  * Utility functions for verifying response details using Cypress.
  * @namespace
@@ -39,7 +42,30 @@ const VerificationUtils = {
     assertResponseBodyKeyValue: (responseBody, expectedKeyName, expectedValue) => {
         cy.addTestContext(`Asserts that Response Body has key: '${expectedKeyName}' with value: '${expectedValue}'.`);
         expect(responseBody[expectedKeyName]).to.equal(expectedValue);
-    }    
+    },    
+    
+    /**
+     * Asserts that the response body matches the specified JSON schema.
+     * @function
+     * @param {Object} responseBody - The parsed response body.
+     * @param {Object} schema - The JSON schema object to validate against.
+     * @throws Will throw an error if the validation fails.
+     */
+    assertResponseSchema: (responseBody, schema) => {
+        cy.addTestContext(`Asserts that Response Body matches the provided JSON schema.`);
+
+        const ajv = new Ajv();
+        const validate = ajv.compile(schema);
+        const isValid = validate(responseBody);
+
+        if (!isValid) {
+            const errorMessages = validate.errors.map(err => `${err.instancePath} ${err.message}`).join(', ');
+            throw new Error(`Schema validation failed: ${errorMessages}`);
+        }
+
+        expect(isValid).to.be.true;
+    },
+
 
 };
 
